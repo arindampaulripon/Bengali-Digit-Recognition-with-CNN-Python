@@ -10,10 +10,10 @@ from keras import applications
 from keras.models import Model
  
  
-train_data_dir = 'D:\SHOP PRACTICE PROJECT\data_'
+train_data_dir = 'C:\Users\i7\Downloads\python\data_'
 datagen = ImageDataGenerator(rescale=1./255)
-batch_size = 32
-img_width, img_height = 150, 150
+batch_size = 64
+img_width, img_height = 200, 200
 # automagically retrieve images and their classes for train and validation sets
 train_generator = datagen.flow_from_directory(
         train_data_dir,
@@ -27,9 +27,6 @@ model.add(Conv2D(32, (3, 3), input_shape=(img_height,img_width, 3)))
 model.add(Activation('relu'))
 model.add(MaxPooling2D(pool_size=(2, 2)))
  
-model.add(Conv2D(32, (3, 3)))
-model.add(Activation('relu'))
-model.add(MaxPooling2D(pool_size=(2, 2)))
  
 model.add(Flatten())
 model.add(Dense(64))
@@ -43,7 +40,7 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 train_samples = 514
  
-epochs = 50
+epochs = 100
 model.fit_generator(
         train_generator,
         steps_per_epoch=1, epochs=epochs)
@@ -52,7 +49,7 @@ from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_a
 from keras.preprocessing.image import ImageDataGenerator
 from keras.applications.inception_v3 import preprocess_input
 #img = load_img('F:/Project/Hobe/test')  # this is a PIL image
-img = load_img('C:/Users/meesa/Desktop/2.jpg', target_size=(150,150))
+img = load_img('C:/Users/i7/Downloads/python/2.jpg', target_size=(150,150))
  
 x = img_to_array(img)
 x = np.expand_dims(x, axis=0)
